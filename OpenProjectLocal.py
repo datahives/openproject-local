@@ -78,10 +78,12 @@ class Application(tk.Frame):
 
         url = "http://localhost:8080"
         isReady = False
+        print("Waiting for OpenProject container")
         while not isReady:
             try:
                 response = requests.get(url)
                 if int(response.status_code) == 200:
+                    print("OpenProject is running")
                     isReady = True
             except:
                 isReady = False
@@ -89,6 +91,7 @@ class Application(tk.Frame):
         self.containerstatus["bg"] = "green"
 
         # launch webbrowser
+        print("Launching web browser")
         webbrowser.open_new_tab(url)
 
     def stop_openproject(self):
